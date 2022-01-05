@@ -21,9 +21,9 @@ public class FreezeCommand implements CommandExecutor {
         Player p = (Player) sender;
         if (args.length == 1) {
             Player t = Bukkit.getPlayerExact(args[0]);
-            if (t != null) {
+            if (t != null && !main.getFrozenPlayers().contains(t)) {
                 main.getFrozenPlayers().add(t);
-                t.sendMessage(t.getName());
+                t.sendMessage("§cYou have been frozen by a staff member! §bPlease join Screenshare Waiting Room at our Discord");
             } else {
                 p.sendMessage("Player not found.");
             }

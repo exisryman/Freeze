@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 public class FreezeEvents implements Listener {
 
@@ -15,10 +16,11 @@ public class FreezeEvents implements Listener {
     }
 
     @EventHandler
-    public void onMove(org.bukkit.event.player.PlayerMoveEvent e) {
+    public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
         if(main.getFrozenPlayers().contains(p)) {
             e.setCancelled(true);
+            p.sendMessage("§cYou are frozen... Please join Screenshare Waiting Room at our Discord.");
         }
     }
 
@@ -27,6 +29,7 @@ public class FreezeEvents implements Listener {
         Player p = e.getPlayer();
         if(main.getFrozenPlayers().contains(p)) {
             e.setCancelled(true);
+            p.sendMessage("§cYou are frozen... Please join Screenshare Waiting Room at our Discord.");
         }
     }
 }

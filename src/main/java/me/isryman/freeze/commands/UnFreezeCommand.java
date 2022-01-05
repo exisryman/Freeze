@@ -20,9 +20,9 @@ public class UnFreezeCommand implements CommandExecutor {
         Player p = (Player) sender;
         if (args.length == 1) {
             Player t = Bukkit.getPlayerExact(args[0]);
-            if (t != null) {
+            if (t != null && !main.getFrozenPlayers().contains(t)) {
                 main.getFrozenPlayers().remove(t);
-                t.sendMessage(t.getName() + "fff");
+                t.sendMessage("§aYou have been unfrozen... Thanks for your time.");
             } else {
                 p.sendMessage("Player not found.");
             }
