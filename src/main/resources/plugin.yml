@@ -1,0 +1,8 @@
+name: Freeze
+main: me.isryman.freeze.Main
+version: 1.0
+author: isryman
+
+commands:
+  freeze:
+    
