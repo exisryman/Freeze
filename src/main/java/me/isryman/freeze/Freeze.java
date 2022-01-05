@@ -10,7 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashSet;
 import java.util.UUID;
 
-public class Main extends JavaPlugin {
+public class Freeze extends JavaPlugin {
 
     private HashSet<UUID> frozenPlayers;
 
