@@ -17,18 +17,21 @@ public class FreezeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player) || !sender.hasPermission("command.freeze")) { return false; }
-        Player p = (Player) sender;
-        if (args.length == 1) {
-            Player t = Bukkit.getPlayerExact(args[0]);
-            if (t != null && !main.getFrozenPlayers().contains(t)) {
-                main.getFrozenPlayers().add(t);
-                t.sendMessage("§cYou have been frozen by a staff member! §bPlease join Screenshare Waiting Room at our Discord");
-            } else {
-                p.sendMessage("Player not found.");
+        if (!(sender instanceof Player)) {
+            Player p = (Player) sender;
+            if(p.hasPermission("freeze")) {
+                if (args.length == 1) {
+                    Player t = Bukkit.getPlayerExact(args[0]);
+                    if (t != null && !main.getFrozenPlayers().contains(t.getUniqueId())) {
+                        main.getFrozenPlayers().add(t.getUniqueId());
+                        t.sendMessage("§cYou have been frozen by a staff member! §bPlease join Screenshare Waiting Room at our Discord");
+                    } else {
+                        p.sendMessage("Player not found.");
+                    }
+                } else {
+                    p.sendMessage("specify a player please.");
+                }
             }
-        } else {
-            p.sendMessage("specify a player please.");
         }
         return false;
     }

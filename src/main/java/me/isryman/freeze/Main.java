@@ -4,21 +4,21 @@ import me.isryman.freeze.commands.FreezeCommand;
 import me.isryman.freeze.commands.UnFreezeCommand;
 import me.isryman.freeze.listeners.FreezeEvents;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.UUID;
 
 public class Main extends JavaPlugin {
 
-    private ArrayList<Player> frozenPlayers;
+    private HashSet<UUID> frozenPlayers;
 
     @Override
     public void onEnable() {
         registerListeners();
         registerCommands();
-        frozenPlayers = new ArrayList<>();
+        frozenPlayers = new HashSet<>();
     }
 
     private void registerListeners() {
@@ -31,7 +31,7 @@ public class Main extends JavaPlugin {
         getCommand("unfreeze").setExecutor(new UnFreezeCommand(this));
     }
 
-    public ArrayList<Player> getFrozenPlayers() {
+    public HashSet<UUID> getFrozenPlayers() {
         return frozenPlayers;
     }
 }

@@ -16,18 +16,21 @@ public class UnFreezeCommand implements CommandExecutor {
     }
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player) || !sender.hasPermission("command.freeze")) { return false; }
-        Player p = (Player) sender;
-        if (args.length == 1) {
-            Player t = Bukkit.getPlayerExact(args[0]);
-            if (t != null && !main.getFrozenPlayers().contains(t)) {
-                main.getFrozenPlayers().remove(t);
-                t.sendMessage("§aYou have been unfrozen... Thanks for your time.");
-            } else {
-                p.sendMessage("Player not found.");
+        if(!(sender instanceof Player)) {
+            Player p = (Player) sender;
+            if(p.hasPermission("freeze")) {
+                if (args.length == 1) {
+                    Player t = Bukkit.getPlayerExact(args[0]);
+                    if (t != null && !main.getFrozenPlayers().contains(t.getUniqueId())) {
+                        main.getFrozenPlayers().remove(t.getUniqueId());
+                        t.sendMessage("§aYou have been unfrozen... Thanks for your time.");
+                    } else {
+                        p.sendMessage("Player not found.");
+                    }
+                } else {
+                    p.sendMessage("specify a player please.");
+                }
             }
-        } else {
-            p.sendMessage("specify a player please.");
         }
         return false;
     }

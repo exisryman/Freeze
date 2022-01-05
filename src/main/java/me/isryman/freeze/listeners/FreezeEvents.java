@@ -18,7 +18,7 @@ public class FreezeEvents implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
-        if(main.getFrozenPlayers().contains(p)) {
+        if(main.getFrozenPlayers().contains(p.getUniqueId())) {
             e.setCancelled(true);
             p.sendMessage("§cYou are frozen... Please join Screenshare Waiting Room at our Discord.");
         }
@@ -27,7 +27,7 @@ public class FreezeEvents implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
-        if(main.getFrozenPlayers().contains(p)) {
+        if(main.getFrozenPlayers().contains(p.getUniqueId())) {
             e.setCancelled(true);
             p.sendMessage("§cYou are frozen... Please join Screenshare Waiting Room at our Discord.");
         }
